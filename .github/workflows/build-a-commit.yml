@@ -1,0 +1,17 @@
+name: Build a Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: The commit to build, by default the latest in master
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      COMMIT: ${{ github.event.inputs.commit || github.sha }}
+    steps:
+    - name: Show commit
+      run: echo "${{ env.COMMIT }}"
