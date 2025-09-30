@@ -120,8 +120,6 @@ def main() -> None:
     print(message)
     issue = use_pr.as_issue()
     comments = list(issue.get_comments())
-    current_user = g.get_user().login
-    print(f"Current user {current_user}")
     for comment in comments:
         if (
             comment.body.startswith(header)
