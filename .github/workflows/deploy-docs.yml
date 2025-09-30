@@ -72,9 +72,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./site --project-name=${{ env.PROJECT_NAME }} --branch=${{ env.BRANCH }}
-      # TODO: remove this
-      - name: Test fail
-        run: exit 1
       - name: Deploy Docs Status Error
         if: failure()
         run: python ./scripts/deploy_docs_status.py
