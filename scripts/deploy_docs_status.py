@@ -2,7 +2,7 @@ import logging
 import re
 from typing import Literal
 
-from github import Github
+from github import Github, Auth
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
 
@@ -27,7 +27,7 @@ def main() -> None:
     settings = Settings()
 
     logging.info(f"Using config: {settings.model_dump_json()}")
-    g = Github(settings.github_token.get_secret_value())
+    g = Github(auth=Auth.Token(settings.github_token.get_secret_value()))
     repo = g.get_repo(settings.github_repository)
     use_pr = next(
         (pr for pr in repo.get_pulls() if pr.head.sha == settings.commit_sha), None
