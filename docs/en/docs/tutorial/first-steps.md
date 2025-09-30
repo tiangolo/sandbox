@@ -13,6 +13,8 @@ Checking comment author. Now for real. For real, for real.
 
 Now let's confirm it works.
 
+Now with deploy status, including errors.
+
 Copy that to a file `main.py`.
 
 Run the live server:
