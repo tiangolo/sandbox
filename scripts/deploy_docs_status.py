@@ -121,7 +121,10 @@ def main() -> None:
     issue = use_pr.as_issue()
     comments = list(issue.get_comments())
     for comment in comments:
-        if comment.body.startswith(header):
+        if (
+            comment.body.startswith(header)
+            and comment.user.login == "github-actions[bot]"
+        ):
             comment.edit(message)
             break
     else:
