@@ -13,7 +13,7 @@ Checking comment author. Now for real. For real, for real.
 
 Now let's confirm it works.
 
-Now with deploy status, including errors.
+Now with deploy status, including errors. Test with an actual error.
 
 Copy that to a file `main.py`.
 
