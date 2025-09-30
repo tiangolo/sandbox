@@ -6,6 +6,8 @@ The simplest FastAPI file could look like this:
 {!../../../docs_src/first_steps/tutorial001.py!}
 ```
 
+Woohoooooo! FastAPI! 🚀
+
 Copy that to a file `main.py`.
 
 Run the live server:
