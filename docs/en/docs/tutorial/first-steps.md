@@ -15,6 +15,8 @@ Now let's confirm it works.
 
 Now with deploy status, including errors. Test with an actual error.
 
+Everything should be working.
+
 Copy that to a file `main.py`.
 
 Run the live server:
