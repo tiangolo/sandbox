@@ -9,6 +9,8 @@ The simplest FastAPI file could look like this:
 Woohoooooo! FastAPI! 🚀
 With previews and everything. 😎
 
+Checking comment author.
+
 Copy that to a file `main.py`.
 
 Run the live server:
