@@ -1,5 +1,6 @@
 import logging
 import re
+from typing import Literal
 
 from github import Github
 from pydantic import BaseModel, SecretStr
@@ -12,7 +13,7 @@ class Settings(BaseSettings):
     deploy_url: str | None = None
     commit_sha: str
     run_id: int
-    is_done: bool = False
+    state: Literal["pending", "success", "error"] = "pending"
 
 
 class LinkData(BaseModel):
@@ -37,16 +38,7 @@ def main() -> None:
     commits = list(use_pr.get_commits())
     current_commit = [c for c in commits if c.sha == settings.commit_sha][0]
     run_url = f"https://github.com/{settings.github_repository}/actions/runs/{settings.run_id}"
-    if settings.is_done and not settings.deploy_url:
-        current_commit.create_status(
-            state="success",
-            description="No Docs Changes",
-            context="deploy-docs",
-            target_url=run_url,
-        )
-        logging.info("No docs changes found")
-        return
-    if not settings.deploy_url:
+    if settings.state == "pending":
         current_commit.create_status(
             state="pending",
             description="Deploying Docs",
@@ -55,6 +47,26 @@ def main() -> None:
         )
         logging.info("No deploy URL available yet")
         return
+    if settings.state == "error":
+        current_commit.create_status(
+            state="error",
+            description="Error Deploying Docs",
+            context="deploy-docs",
+            target_url=run_url,
+        )
+        logging.info("Error deploying docs")
+        return
+    assert settings.state == "success"
+    if not settings.deploy_url:
+        current_commit.create_status(
+            state="success",
+            description="No Docs Changes",
+            context="deploy-docs",
+            target_url=run_url,
+        )
+        logging.info("No docs changes found")
+        return
+    assert settings.deploy_url
     current_commit.create_status(
         state="success",
         description="Docs Deployed",
