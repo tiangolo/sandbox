@@ -29,14 +29,14 @@ jobs:
             {
               "answered": {
                 "delay": 600,
-                "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs.",
+                "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
+              },
+              "waiting": {
+                "delay": 600,
+                "message": "Closing now.",
                 "reminder": {
                   "before": 300,
                   "message": "This will be closed..."
                 }
-              },
-              "waiting": {
-                "delay": 2628000,
-                "message": "As this PR has been waiting for the original user for a while but seems to be inactive, it's now going to be closed. But if there's anyone interested, feel free to create a new PR."
               }
             }
