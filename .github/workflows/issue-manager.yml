@@ -2,7 +2,7 @@ name: Issue Manager
 
 on:
   schedule:
-    - cron: "15 15 * * *"
+    - cron: "* * * * *"
   issue_comment:
     types:
       - created
@@ -22,14 +22,18 @@ jobs:
   issue-manager:
     runs-on: ubuntu-latest
     steps:
-      - uses: tiangolo/issue-manager@master
+      - uses: YuriiMotov/issue-manager@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config: >
             {
               "answered": {
-                "delay": 120,
-                "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
+                "delay": 600,
+                "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs.",
+                "reminder": {
+                  "before": 300,
+                  "message": "This will be closed..."
+                }
               },
               "waiting": {
                 "delay": 2628000,
