@@ -2,6 +2,14 @@
 
 #### Woohoo new stuff! 🎉
 
+This changed: 📝 Update README.md. Done by [the GitHub user notiangolo](https://github.com/notiangolo). Check the [Pull Request 107 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/107). now back to code. 🤓
+
+🥳 🕺 💃
+
+...okay, back to code. 🤓
+
+#### Woohoo new stuff! 🎉
+
 This changed: 🔥 Remove old files. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 100 with the changes and stuff](https://github.com/tiangolo/github-actions-sandbox/pull/100). now back to code. 🤓
 
 🥳 🕺 💃
@@ -113,16 +121,6 @@ This changed: 🥚 Add a fake easter egg, try custom label. Done by [the GitHub 
 #### Woohoo new stuff! 🎉
 
 This changed: 🥚 Add a fake easter egg, try custom label. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 84 with the changes and stuff](https://github.com/tiangolo/github-actions-sandbox/pull/84). now back to code. 🤓
-
-🥳 🕺 💃
-
-...okay, back to code. 🤓
-
-#### ### Internal
-
-#### Woohoo new stuff! 🎉
-
-This changed: 👷 Update `issue-manager.yml`. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 104 with the changes and stuff](https://github.com/tiangolo/github-actions-sandbox/pull/104). now back to code. 🤓
 
 🥳 🕺 💃
 
