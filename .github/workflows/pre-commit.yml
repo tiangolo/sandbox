@@ -41,8 +41,6 @@ jobs:
       # TODO: remove this
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        with:
-          limit-access-to-actor: true
       - name: Run pre-commit
         run: |
           # Fetch the base branch for comparison
