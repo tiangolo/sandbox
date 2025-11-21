@@ -32,7 +32,7 @@ jobs:
             pyproject.toml
             uv.lock
       - name: Run pre-commit
-        run: uvx pre-commit run --all-files --show-diff-on-failure
+        run: uvx pre-commit run --from-ref origin/${{ github.base_ref }} --to-ref HEAD --show-diff-on-failure
 
   # https://github.com/marketplace/actions/alls-green#why
   check:  # This job does nothing and is only used for the branch protection
