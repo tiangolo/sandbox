@@ -43,7 +43,7 @@ jobs:
           git fetch origin ${{ github.base_ref }}
           uvx pre-commit run --from-ref origin/${{ github.base_ref }} --to-ref HEAD --show-diff-on-failure
       - name: Commit and push changes
-        if: always()
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -55,7 +55,7 @@ jobs:
             git push
           fi
       - uses: pre-commit-ci/lite-action@v1.1.0
-        if: always()
+        if: always() && github.event.pull_request.head.repo.full_name != github.repository
         with:
           msg: 🎨 Auto format
 
