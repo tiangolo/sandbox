@@ -41,8 +41,6 @@ jobs:
             requirements**.txt
             pyproject.toml
             uv.lock
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@v3
       - name: Run pre-commit
         id: precommit
         run: |
