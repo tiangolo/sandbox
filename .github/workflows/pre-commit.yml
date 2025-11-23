@@ -1,4 +1,4 @@
-name: autoformat
+name: pre-commit
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ env:
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
 jobs:
-  autoformat:
+  pre-commit:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,6 +22,14 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v5
+        if: env.IS_FORK == 'false'
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.PRECOMMIT }}
+      - uses: actions/checkout@v5
+        if: env.IS_FORK == 'true'
+        with:
+          ref: ${{ github.head_ref }}
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -58,7 +66,7 @@ jobs:
         if: env.IS_FORK == 'true'
         with:
           msg: 🎨 Auto format
-      - name: Error out
+      - name: Error out on pre-commit errors
         if: steps.precommit.outcome == 'failure'
         run: exit 1
 
@@ -66,7 +74,7 @@ jobs:
   alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
-      - autoformat
+      - pre-commit
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
