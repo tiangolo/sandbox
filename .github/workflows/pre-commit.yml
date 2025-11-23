@@ -22,6 +22,12 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v5
+        if: env.IS_FORK == 'false'
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.PRECOMMIT }}
+      - uses: actions/checkout@v5
+        if: env.IS_FORK == 'true'
         with:
           ref: ${{ github.head_ref }}
       - name: Set up Python
