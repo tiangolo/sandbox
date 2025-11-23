@@ -1,4 +1,4 @@
-name: autoformat
+name: pre-commit
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ env:
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
 jobs:
-  autoformat:
+  pre-commit:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -66,7 +66,7 @@ jobs:
   alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
-      - autoformat
+      - pre-commit
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
