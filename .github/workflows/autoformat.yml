@@ -1,4 +1,4 @@
-name: pre-commit
+name: autoformat
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ env:
   UV_SYSTEM_PYTHON: 1
 
 jobs:
-  pre-commit:
+  autoformat:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,7 +24,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -36,16 +35,15 @@ jobs:
             requirements**.txt
             pyproject.toml
             uv.lock
-      # TODO: remove this
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
       - name: Run pre-commit
         run: |
           # Fetch the base branch for comparison
           git fetch origin ${{ github.base_ref }}
           uvx pre-commit run --from-ref origin/${{ github.base_ref }} --to-ref HEAD --show-diff-on-failure
-        continue-on-error: true
       - name: Commit and push changes
+        if: always() && github.event.pull_request.head.repo.full_name == github.repository
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -53,15 +51,19 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🎨 Auto format from pre-commit"
+            git commit -m "🎨 Auto format"
             git push
           fi
+      - uses: pre-commit-ci/lite-action@v1.1.0
+        if: always() && github.event.pull_request.head.repo.full_name != github.repository
+        with:
+          msg: 🎨 Auto format
 
   # https://github.com/marketplace/actions/alls-green#why
-  check:  # This job does nothing and is only used for the branch protection
+  alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
-      - pre-commit
+      - autoformat
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
