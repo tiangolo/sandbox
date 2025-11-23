@@ -25,7 +25,7 @@ jobs:
           # To be able to commit it needs more than the last commit
           ref: ${{ github.head_ref }}
           # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
-          token: ${{ secrets.PRECOMMIT }}
+          token: ${{ secrets.PRE_COMMIT }}
       # pre-commit lite ci needs the default checkout configs to work
       - uses: actions/checkout@v5
         name: Checkout PR for fork
