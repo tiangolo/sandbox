@@ -2,6 +2,14 @@
 
 #### Woohoo new stuff! 🎉
 
+This changed: 📝 Update checkable.txt 2. Done by [the GitHub user notiangolo](https://github.com/notiangolo). Check the [Pull Request 109 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/109). now back to code. 🤓
+
+🥳 🕺 💃
+
+...okay, back to code. 🤓
+
+#### Woohoo new stuff! 🎉
+
 This changed: 📝 Update README.md. Done by [the GitHub user notiangolo](https://github.com/notiangolo). Check the [Pull Request 107 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/107). now back to code. 🤓
 
 🥳 🕺 💃
