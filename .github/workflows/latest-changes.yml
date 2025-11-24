@@ -20,7 +20,7 @@ jobs:
   latest-changes:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         # To allow latest-changes to commit to the main branch
         token: ${{ secrets.SANDBOX_TOKEN }}
@@ -35,7 +35,7 @@ jobs:
       with:
         limit-access-to-actor: true
     # - uses: docker://tiangolo/latest-changes:latest
-    - uses: tiangolo/latest-changes@0.3.1
+    - uses: tiangolo/latest-changes@0.4.1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         latest_changes_file: docs/en/docs/release-notes.md
