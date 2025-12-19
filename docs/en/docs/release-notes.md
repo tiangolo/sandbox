@@ -2,6 +2,14 @@
 
 #### Woohoo new stuff! 🎉
 
+This changed: 👷 Update pre-commit.yml. Done by [the GitHub user notiangolo](https://github.com/notiangolo). Check the [Pull Request 112 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/112). now back to code. 🤓
+
+🥳 🕺 💃
+
+...okay, back to code. 🤓
+
+#### Woohoo new stuff! 🎉
+
 This changed: 📝 Update checkable.txt 2. Done by [the GitHub user notiangolo](https://github.com/notiangolo). Check the [Pull Request 109 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/109). now back to code. 🤓
 
 🥳 🕺 💃
@@ -129,16 +137,6 @@ This changed: 🥚 Add a fake easter egg, try custom label. Done by [the GitHub 
 #### Woohoo new stuff! 🎉
 
 This changed: 🥚 Add a fake easter egg, try custom label. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 84 with the changes and stuff](https://github.com/tiangolo/github-actions-sandbox/pull/84). now back to code. 🤓
-
-🥳 🕺 💃
-
-...okay, back to code. 🤓
-
-#### ### Docs
-
-#### Woohoo new stuff! 🎉
-
-This changed: 📝 Update README with mention of imaginary clone. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 111 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/111). now back to code. 🤓
 
 🥳 🕺 💃
 
