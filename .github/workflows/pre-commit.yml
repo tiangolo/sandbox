@@ -7,7 +7,6 @@ on:
       - synchronize
 
 env:
-  UV_SYSTEM_PYTHON: 1
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
 jobs:
@@ -22,8 +21,9 @@ jobs:
         name: Checkout PR for own repo
         if: env.IS_FORK == 'false'
         with:
-          # To be able to commit it needs more than the last commit
+          # To be able to commit it needs more than the last commit, in the head branch
           ref: ${{ github.head_ref }}
+          fetch-depth: 0
           # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
           token: ${{ secrets.PRE_COMMIT }}
       # pre-commit lite ci needs the default checkout configs to work
@@ -41,12 +41,9 @@ jobs:
             requirements**.txt
             pyproject.toml
             uv.lock
-      - name: Run pre-commit
+      - name: Run prek - pre-commit
         id: precommit
-        run: |
-          # Fetch the base branch for comparison
-          git fetch origin ${{ github.base_ref }}
-          uvx pre-commit run --from-ref origin/${{ github.base_ref }} --to-ref HEAD --show-diff-on-failure
+        run: uv run prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
         continue-on-error: true
       - name: Commit and push changes
         if: env.IS_FORK == 'false'
@@ -69,7 +66,7 @@ jobs:
         run: exit 1
 
   # https://github.com/marketplace/actions/alls-green#why
-  alls-green:  # This job does nothing and is only used for the branch protection
+  pre-commit-alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
       - pre-commit
