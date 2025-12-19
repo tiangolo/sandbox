@@ -2,6 +2,14 @@
 
 #### Woohoo new stuff! 🎉
 
+This changed: 👷 Update pre-commit command to use 'uvx'. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 113 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/113). now back to code. 🤓
+
+🥳 🕺 💃
+
+...okay, back to code. 🤓
+
+#### Woohoo new stuff! 🎉
+
 This changed: 👷 Update pre-commit.yml. Done by [the GitHub user notiangolo](https://github.com/notiangolo). Check the [Pull Request 112 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/112). now back to code. 🤓
 
 🥳 🕺 💃
