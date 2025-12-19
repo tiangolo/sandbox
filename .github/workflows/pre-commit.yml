@@ -27,9 +27,9 @@ jobs:
           # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
           token: ${{ secrets.PRE_COMMIT }}
       # pre-commit lite ci needs the default checkout configs to work
-      - uses: actions/checkout@v5
-        name: Checkout PR for fork
-        if: env.IS_FORK == 'true'
+      # - uses: actions/checkout@v5
+      #   name: Checkout PR for fork
+      #   if: env.IS_FORK == 'true'
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
