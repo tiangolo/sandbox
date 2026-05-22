@@ -18,6 +18,6 @@ Discussion: <!-- Link to the GitHub Discussion -->
 
 - [ ] This PR is an obvious typo fix, or it links to a GitHub Discussion for the proposed code change.
 - [ ] I added tests for the change.
-- [ ] The new or updated tests fail on `master` and pass on this PR.
+- [ ] The new or updated tests fail on the main branch and pass on this PR.
 - [ ] Coverage stays at 100%.
 - [ ] The documentation explains the change if needed.
