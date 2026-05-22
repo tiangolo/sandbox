@@ -1,10 +1,11 @@
 ## Pull Request
 
 <!--
-Obvious typo fixes can be made in a PR without starting a discussion.
+Please start with a GitHub Discussion.
 
-For other changes that modify code, please start with a GitHub Discussion and
-link it below before opening the PR.
+Once a team member asks you to open a PR, create it and link the discussion here.
+
+Obvious typo fixes can be made in a PR without starting a discussion.
 -->
 
 Discussion: <!-- Link to the GitHub Discussion -->
