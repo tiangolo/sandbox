@@ -14,6 +14,21 @@ Discussion: <!-- Link to the GitHub Discussion -->
 
 <!-- Write the description of your PR here -->
 
+## AI Disclaimer
+
+<!-- If using AI, write here the prompt and model used -->
+
+<details>
+<summary>AI transcript</summary>
+
+```
+
+Paste here the entire AI transcript
+
+```
+
+</details>
+
 ## Checklist
 
 - [ ] This PR is an obvious typo fix, or it links to a GitHub Discussion for the proposed code change.
