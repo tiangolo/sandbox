@@ -7,7 +7,11 @@ For other changes that modify code, please start with a GitHub Discussion and
 link it below before opening the PR.
 -->
 
-Discussion: <!-- Link to the GitHub Discussion, or write "typo-only" for obvious typo fixes. -->
+Discussion: <!-- Link to the GitHub Discussion -->
+
+## Description
+
+<!-- Write the description of your PR here -->
 
 ## Checklist
 
