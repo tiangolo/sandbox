@@ -7,4 +7,5 @@ contact_links:
     url: https://github.com/tiangolo/github-actions-sandbox/discussions/categories/questions
   - name: Feature Request
     about: To suggest an idea or ask about a feature, please start with a question saying what you would like to achieve. There might be a way to do it already.
-    url: https://repo-redirect.fastapicloud.dev/github?path=/discussions/categories/questions
+    # url: https://repo-redirect.fastapicloud.dev/github?path=/discussions/categories/questions
+    url: ../../discussions/categories/questions
