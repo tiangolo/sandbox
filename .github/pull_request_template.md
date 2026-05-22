@@ -19,5 +19,4 @@ Discussion: <!-- Link to the GitHub Discussion -->
 - [ ] I added tests for the change.
 - [ ] The new or updated tests fail on `master` and pass on this PR.
 - [ ] Coverage stays at 100%.
-- [ ] The documentation explains the change.
-- [ ] Documentation examples are source files in `docs_src`.
+- [ ] The documentation explains the change if needed.
