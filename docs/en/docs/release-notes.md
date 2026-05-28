@@ -158,6 +158,16 @@ This changed: 🥚 Add a fake easter egg, try custom label. Done by [the GitHub 
 
 ...okay, back to code. 🤓
 
+#### ### Features
+
+#### Woohoo new stuff! 🎉
+
+This changed: ✨ Test included latest changes entry. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 119 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/119). now back to code. 🤓
+
+🥳 🕺 💃
+
+...okay, back to code. 🤓
+
 ## 0.2.0
 
 ### Features
