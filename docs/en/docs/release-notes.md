@@ -1,5 +1,7 @@
 # Release Notes
 
+## Latest Changes
+
 #### Woohoo new stuff! 🎉
 
 This changed: 🔧 Test latest-changes skip labels branch. Done by [the GitHub user tiangolo](https://github.com/tiangolo). Check the [Pull Request 117 with the changes and stuff](https://github.com/tiangolo/sandbox/pull/117). now back to code. 🤓
