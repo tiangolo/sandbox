@@ -8,9 +8,9 @@ on:
         required: true
         type: choice
         options:
-          - major
-          - minor
           - patch
+          - minor
+          - major
       date:
         description: Release date in YYYY-MM-DD format. Defaults to today.
         required: false
