@@ -28,7 +28,6 @@ jobs:
           fetch-depth: 0
           # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
           token: ${{ secrets.PRE_COMMIT }}
-          persist-credentials: false
       # pre-commit lite ci needs the default checkout configs to work
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         name: Checkout PR for fork

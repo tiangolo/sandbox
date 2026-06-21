@@ -1,4 +1,8 @@
 rules:
+  artipacked:
+    ignore:
+      - latest-changes.yml
+      - pre-commit.yml
   dangerous-triggers:
     ignore:
       - deploy-docs.yml

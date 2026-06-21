@@ -24,7 +24,6 @@ jobs:
       with:
         # To allow latest-changes to commit to the main branch
         token: ${{ secrets.SANDBOX_TOKEN }}
-        persist-credentials: false
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
