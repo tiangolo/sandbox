@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       debug_enabled:
-        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'     
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
 
@@ -12,14 +12,16 @@ jobs:
   tmate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
+      with:
+        persist-credentials: false
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
     # Enable tmate debugging of manually-triggered workflows if the input option was provided
     - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+      uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3.24
       if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
       with:
         limit-access-to-actor: true

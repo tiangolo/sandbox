@@ -14,13 +14,15 @@ jobs:
   fastapi-people:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+        with:
+          persist-credentials: false
       # Ref: https://github.com/actions/runner/issues/2033
       - name: Fix git safe.directory in container
         run: mkdir -p /home/runner/work/_temp/_github_home && printf "[safe]\n\tdirectory = /github/workspace" > /home/runner/work/_temp/_github_home/.gitconfig
       # Allow debugging with tmate
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3.24
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
         with:
           limit-access-to-actor: true

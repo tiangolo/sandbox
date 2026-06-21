@@ -14,4 +14,4 @@ jobs:
       COMMIT: ${{ github.event.inputs.commit || github.sha }}
     steps:
     - name: Show commit
-      run: echo "${{ env.COMMIT }}"
+      run: echo "${COMMIT}"
