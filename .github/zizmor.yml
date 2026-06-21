@@ -1,0 +1,26 @@
+rules:
+  dangerous-triggers:
+    ignore:
+      - deploy-docs.yml
+      - issue-manager.yml
+      - latest-changes.yml
+      - notify-translations.yml
+      - smokeshow.yml
+  excessive-permissions:
+    ignore:
+      - build-a-commit.yml
+      - build-docs.yml
+      - label-approved.yml
+      - latest-changes.yml
+      - notify-translations.yml
+      - people.yml
+      - pre-commit.yml
+      - test.yml
+      - tmate.yml
+  unpinned-uses:
+    ignore:
+      - build-docs.yml
+      - issue-manager.yml
+      - label-approved.yml
+      - pre-commit.yml
+      - test.yml

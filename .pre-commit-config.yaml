@@ -15,3 +15,13 @@ repos:
         language: unsupported
         name: local script
         entry: uv run ./scripts/check.py
+
+  - repo: local
+    hooks:
+      - id: zizmor
+        name: zizmor
+        language: python
+        entry: uv run zizmor .
+        files: ^\.github/workflows/|^uv\.lock$
+        require_serial: true
+        pass_filenames: false
