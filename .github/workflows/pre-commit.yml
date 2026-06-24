@@ -2,10 +2,6 @@ name: pre-commit
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-
 env:
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
