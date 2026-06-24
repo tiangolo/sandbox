@@ -1,0 +1,186 @@
+name: Benchmark Issue Manager Docker
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_manager_repository:
+        description: "Repository containing issue-manager"
+        required: true
+        default: "tiangolo/issue-manager"
+      prebuilt_ref:
+        description: "Ref whose Dockerfile inherits from the published image"
+        required: true
+        default: "master"
+      local_uv_ref:
+        description: "Ref whose Dockerfile builds directly with uv"
+        required: true
+        default: "benchmark/local-uv-dockerfile"
+      runs:
+        description: "Number of runs per variant, up to 10"
+        required: true
+        default: "5"
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    name: ${{ matrix.variant }} (${{ matrix.run }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - prebuilt-image
+          - local-uv-dockerfile
+        run: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    steps:
+      - name: Select matrix run
+        id: selected
+        shell: bash
+        run: |
+          case "${{ inputs.runs }}" in
+            ''|*[!0-9]*)
+              echo "runs must be a number"
+              exit 1
+              ;;
+          esac
+          if [ "${{ inputs.runs }}" -gt 10 ]; then
+            echo "runs must be 10 or less"
+            exit 1
+          fi
+          if [ "${{ matrix.run }}" -le "${{ inputs.runs }}" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Resolve issue-manager ref
+        if: steps.selected.outputs.run == 'true'
+        id: ref
+        shell: bash
+        run: |
+          if [ "${{ matrix.variant }}" = "prebuilt-image" ]; then
+            echo "value=${{ inputs.prebuilt_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=${{ inputs.local_uv_ref }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout issue-manager
+        if: steps.selected.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.issue_manager_repository }}
+          ref: ${{ steps.ref.outputs.value }}
+          path: issue-manager
+
+      - name: Build Docker action image
+        if: steps.selected.outputs.run == 'true'
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p results
+
+          tag="issue-manager-benchmark:${{ matrix.variant }}-${{ matrix.run }}"
+          target="${{ inputs.issue_manager_repository }}@${{ steps.ref.outputs.value }}:Dockerfile"
+
+          start_ns=$(date +%s%N)
+          docker build \
+            --pull \
+            --no-cache \
+            --progress=plain \
+            --tag "$tag" \
+            --file issue-manager/Dockerfile \
+            issue-manager
+          end_ns=$(date +%s%N)
+
+          elapsed_ms=$(((end_ns - start_ns) / 1000000))
+          image_bytes=$(docker image inspect "$tag" --format '{{ .Size }}')
+          printf '{"variant":"%s","run":%s,"target":"%s","elapsed_ms":%s,"image_bytes":%s}\n' \
+            "${{ matrix.variant }}" \
+            "${{ matrix.run }}" \
+            "$target" \
+            "$elapsed_ms" \
+            "$image_bytes" \
+            > "results/${{ matrix.variant }}-${{ matrix.run }}.json"
+
+          {
+            echo "elapsed_ms=${elapsed_ms}"
+            echo "image_bytes=${image_bytes}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Report run result
+        if: steps.selected.outputs.run == 'true'
+        shell: bash
+        run: |
+          {
+            echo "## ${{ matrix.variant }} run ${{ matrix.run }}"
+            echo
+            echo "| Variant | Ref | Run | Elapsed ms | Image bytes |"
+            echo "| --- | --- | ---: | ---: | ---: |"
+            echo "| ${{ matrix.variant }} | ${{ steps.ref.outputs.value }} | ${{ matrix.run }} | ${{ steps.build.outputs.elapsed_ms }} | ${{ steps.build.outputs.image_bytes }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload result
+        if: steps.selected.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue-manager-benchmark-${{ matrix.variant }}-${{ matrix.run }}
+          path: results/*.json
+
+  summarize:
+    name: Summarize benchmark
+    runs-on: ubuntu-latest
+    needs: benchmark
+    if: ${{ always() && !cancelled() }}
+    steps:
+      - name: Download results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: issue-manager-benchmark-*
+          path: results
+          merge-multiple: true
+
+      - name: Summarize medians
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          import statistics
+          from pathlib import Path
+
+          rows = [json.loads(path.read_text()) for path in sorted(Path("results").glob("*.json"))]
+
+          print("## Issue Manager Docker benchmark")
+          print()
+          if not rows:
+              print("No benchmark result files were found.")
+              raise SystemExit(1)
+
+          grouped = {}
+          for row in rows:
+              grouped.setdefault(row["variant"], []).append(row)
+
+          print("| Variant | Runs | Median ms | Min ms | Max ms | Image bytes |")
+          print("| --- | ---: | ---: | ---: | ---: | ---: |")
+          for variant, items in sorted(grouped.items()):
+              elapsed = [item["elapsed_ms"] for item in items]
+              sizes = [item["image_bytes"] for item in items]
+              print(
+                  f"| {variant} | {len(items)} | "
+                  f"{int(statistics.median(elapsed))} | {min(elapsed)} | "
+                  f"{max(elapsed)} | {int(statistics.median(sizes))} |"
+              )
+
+          print()
+          print("### Raw runs")
+          print()
+          print("| Variant | Run | Target | Elapsed ms | Image bytes |")
+          print("| --- | ---: | --- | ---: | ---: |")
+          for row in sorted(rows, key=lambda item: (item["variant"], item["run"])):
+              print(
+                  f"| {row['variant']} | {row['run']} | {row['target']} | "
+                  f"{row['elapsed_ms']} | {row['image_bytes']} |"
+              )
+          PY
