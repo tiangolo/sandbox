@@ -15,6 +15,10 @@ on:
         description: "Ref whose Dockerfile builds directly with uv"
         required: true
         default: "benchmark/local-uv-dockerfile"
+      uv_python_base_ref:
+        description: "Ref whose Dockerfile starts from Astral's uv Python image"
+        required: true
+        default: "benchmark/uv-python-base"
       runs:
         description: "Number of runs per variant, up to 10"
         required: true
@@ -33,6 +37,7 @@ jobs:
         variant:
           - prebuilt-image
           - local-uv-dockerfile
+          - uv-python-base
         run: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     steps:
       - name: Select matrix run
@@ -62,6 +67,8 @@ jobs:
         run: |
           if [ "${{ matrix.variant }}" = "prebuilt-image" ]; then
             echo "value=${{ inputs.prebuilt_ref }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ matrix.variant }}" = "uv-python-base" ]; then
+            echo "value=${{ inputs.uv_python_base_ref }}" >> "$GITHUB_OUTPUT"
           else
             echo "value=${{ inputs.local_uv_ref }}" >> "$GITHUB_OUTPUT"
           fi
