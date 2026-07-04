@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update README.md. PR [#133](https://github.com/tiangolo/sandbox/pull/133) by [@notiangolo](https://github.com/notiangolo).
+
 ## 0.201.2 (2026-05-30)
 
 * And even more.
