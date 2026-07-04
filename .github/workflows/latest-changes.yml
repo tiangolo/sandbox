@@ -40,21 +40,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         latest_changes_file: docs/en/docs/release-notes.md
-        latest_changes_header: '# Release Notes'
-        template_file: ./.github/workflows/release-notes.jinja2
+        latest_changes_header: '## Latest Changes'
         end_regex: '^## '
         debug_logs: true
-        skip_labels: '["release"]'
-        labels: >
-          [
-            {"label": "breaking", "header": "### Breaking Changes"},
-            {"label": "security", "header": "### Security Fixes"},
-            {"label": "feature", "header": "### Features"},
-            {"label": "bug", "header": "### Fixes"},
-            {"label": "refactor", "header": "### Refactors"},
-            {"label": "upgrade", "header": "### Upgrades"},
-            {"label": "docs", "header": "### Docs"},
-            {"label": "lang-all", "header": "### Translations"},
-            {"label": "internal", "header": "### Internal"},
-            {"label": "egg", "header": "### Easter Eggs"}
-          ]
+        label_header_prefix: '### '
