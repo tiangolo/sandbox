@@ -8,6 +8,7 @@
 
 ### Internal
 
+* ⬆️ Upgrade latest-changes to 0.7.1. PR [#135](https://github.com/tiangolo/sandbox/pull/135) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix notify translations checkout target. PR [#134](https://github.com/tiangolo/sandbox/pull/134) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.201.2 (2026-05-30)
