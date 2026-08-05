@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Fixes
+
+* ✅ Verify `metadata: read` handling. PR [#139](https://github.com/tiangolo/sandbox/pull/139) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Update README.md. PR [#133](https://github.com/tiangolo/sandbox/pull/133) by [@notiangolo](https://github.com/notiangolo).
