@@ -1,13 +1,11 @@
 rules:
   artipacked:
     ignore:
-      - latest-changes.yml
       - pre-commit.yml
   dangerous-triggers:
     ignore:
       - deploy-docs.yml
       - issue-manager.yml
-      - latest-changes.yml
       - notify-translations.yml
       - smokeshow.yml
   excessive-permissions:
@@ -15,7 +13,6 @@ rules:
       - build-a-commit.yml
       - build-docs.yml
       - label-approved.yml
-      - latest-changes.yml
       - notify-translations.yml
       - people.yml
       - pre-commit.yml
