@@ -6,6 +6,8 @@ It's just a GitHub repo for me to try out stuff and develop GitHub Actions.
 
 It also tests GitHub Apps and their webhooks.
 
+The production GitHub App is tested here too.
+
 Just because I can't do that locally. 🤷
 
 There's even an imaginary clone/friend(?) here. Heck yeah. 🤘 And strikes again.
