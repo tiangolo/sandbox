@@ -4,6 +4,7 @@
 
 ### Fixes
 
+* ✅ Verify production Latest Changes app. PR [#140](https://github.com/tiangolo/sandbox/pull/140) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Verify `metadata: read` handling. PR [#139](https://github.com/tiangolo/sandbox/pull/139) by [@tiangolo](https://github.com/tiangolo).
 
 ### Docs
