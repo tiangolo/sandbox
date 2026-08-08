@@ -13,6 +13,7 @@
 
 ### Internal
 
+* 👷 Use PR Push release. PR [#149](https://github.com/tiangolo/sandbox/pull/149) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Restore GitHub Actions committer. PR [#146](https://github.com/tiangolo/sandbox/pull/146) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Use token committer. PR [#144](https://github.com/tiangolo/sandbox/pull/144) by [@tiangolo](https://github.com/tiangolo).
 * 🧪 Test PR Push. PR [#142](https://github.com/tiangolo/sandbox/pull/142) by [@tiangolo](https://github.com/tiangolo).
