@@ -13,6 +13,7 @@
 
 ### Internal
 
+* 🧪 Test PR Submit development endpoint. PR [#154](https://github.com/tiangolo/sandbox/pull/154) by [@tiangolo](https://github.com/tiangolo).
 * 🧪 Restore PR Push production endpoint. PR [#153](https://github.com/tiangolo/sandbox/pull/153) by [@tiangolo](https://github.com/tiangolo).
 * 🧪 Test PR Push development endpoint. PR [#152](https://github.com/tiangolo/sandbox/pull/152) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use PR Push release. PR [#149](https://github.com/tiangolo/sandbox/pull/149) by [@tiangolo](https://github.com/tiangolo).
