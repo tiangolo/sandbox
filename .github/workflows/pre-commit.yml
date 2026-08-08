@@ -64,9 +64,7 @@ jobs:
       - name: Get PR Push token
         id: pr-push
         if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
-        uses: tiangolo/pr-push@e84e947b8cd4b6ee30e5c43e817f78ec2fdf9ae7
-        with:
-          url: https://pr-push-dev.fastapicloud.dev
+        uses: tiangolo/pr-push@0.0.1
       - name: Commit and push changes
         if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
         env:
