@@ -13,6 +13,7 @@
 
 ### Internal
 
+* 👷 Use GitHub CLI for Git authentication. PR [#159](https://github.com/tiangolo/sandbox/pull/159) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use PR Push commit identity. PR [#158](https://github.com/tiangolo/sandbox/pull/158) by [@tiangolo](https://github.com/tiangolo).
 * 🧪 Test PR Submit production endpoint. PR [#156](https://github.com/tiangolo/sandbox/pull/156) by [@tiangolo](https://github.com/tiangolo).
 * 🧪 Test PR Submit development endpoint. PR [#154](https://github.com/tiangolo/sandbox/pull/154) by [@tiangolo](https://github.com/tiangolo).
