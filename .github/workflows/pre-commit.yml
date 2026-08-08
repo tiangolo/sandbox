@@ -65,8 +65,6 @@ jobs:
         id: pr-push
         if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
         uses: tiangolo/pr-push@0.0.1
-        with:
-          url: https://pr-push-dev.fastapicloud.dev
       - name: Commit and push changes
         if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
         env:
