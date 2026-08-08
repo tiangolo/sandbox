@@ -13,6 +13,7 @@
 
 ### Internal
 
+* 🔐 Configure PR Push for pre-commit. PR [#141](https://github.com/tiangolo/sandbox/pull/141) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade latest-changes to 0.7.1. PR [#135](https://github.com/tiangolo/sandbox/pull/135) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix notify translations checkout target. PR [#134](https://github.com/tiangolo/sandbox/pull/134) by [@tiangolo](https://github.com/tiangolo).
 
