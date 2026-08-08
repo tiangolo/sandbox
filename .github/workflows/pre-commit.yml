@@ -2,12 +2,18 @@ name: pre-commit
 
 on:
   pull_request:
+
+permissions: {}
+
 env:
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Dump GitHub context
         env:
@@ -22,8 +28,7 @@ jobs:
           ref: ${{ github.head_ref }}
           # And it needs the full history to be able to compute diffs
           fetch-depth: 0
-          # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
-          token: ${{ secrets.PRE_COMMIT }}
+          persist-credentials: false
       # pre-commit lite ci needs the default checkout configs to work
       - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         name: Checkout PR for fork
@@ -48,18 +53,31 @@ jobs:
         id: precommit
         run: uvx prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
         continue-on-error: true
+      - name: Check for changes
+        id: changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Get PR Push token
+        id: pr-push
+        if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
+        uses: tiangolo/pr-push@ac6dc2788c46c12d45553e020fc75de30d30c312
+        with:
+          url: https://pr-push-dev.fastapicloud.dev
       - name: Commit and push changes
-        if: env.IS_FORK == 'false'
+        if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
+        env:
+          PR_PUSH_TOKEN: ${{ steps.pr-push.outputs.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${PR_PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git add -A
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "🎨 Auto format"
-            git push
-          fi
+          git commit -m "🎨 Auto format"
+          git push
       - uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
         if: env.IS_FORK == 'true'
         with:
