@@ -1,1 +1,1 @@
-This line intentionally has trailing whitespace.   
+This line intentionally has trailing whitespace.
