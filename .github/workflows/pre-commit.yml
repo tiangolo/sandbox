@@ -61,6 +61,7 @@ jobs:
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
+      # A pull request must not be able to modify this workflow and receive a token.
       - name: Get PR Push token
         id: pr-push
         if: env.IS_FORK == 'false' && steps.changes.outputs.changed == 'true'
