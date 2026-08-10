@@ -1,1 +1,2 @@
 Temporary pull request for testing the Latest Changes development app label status.
+This second line triggers the pull request synchronize event.
