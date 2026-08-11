@@ -135,9 +135,11 @@ wheels = [
 
 [[package]]
 name = "sandbox"
-version = "0.1.1"
+version = "0.1.0"
 source = { virtual = "." }
-dependencies = [
+
+[package.optional-dependencies]
+test-auto-label = [
     { name = "httpx" },
 ]
 
@@ -148,7 +150,8 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "httpx", specifier = ">=0.28.1" }]
+requires-dist = [{ name = "httpx", marker = "extra == 'test-auto-label'", specifier = ">=0.28.1" }]
+provides-extras = ["test-auto-label"]
 
 [package.metadata.requires-dev]
 dev = [
