@@ -1,3 +1,2 @@
 workflows:
   - .github/workflows/pre-commit.yml
-  - .github/workflows/pr-push-development.yml
