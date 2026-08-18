@@ -13,6 +13,7 @@
 
 ### Infrastructure
 
+* 🧹 Remove PR Push development fixture. PR [#172](https://github.com/tiangolo/sandbox/pull/172) by [@tiangolo](https://github.com/tiangolo).
 * 🧪 Add PR Push development workflow. PR [#170](https://github.com/tiangolo/sandbox/pull/170) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
