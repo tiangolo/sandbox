@@ -1,4 +1,4 @@
-name: Test PR Push Development  # Workflow integrity rejection test
+name: Test PR Push Development
 
 on:
   pull_request:
