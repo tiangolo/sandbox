@@ -11,6 +11,10 @@
 
 * 📝 Update README.md. PR [#133](https://github.com/tiangolo/sandbox/pull/133) by [@notiangolo](https://github.com/notiangolo).
 
+### Infrastructure
+
+* 🧪 Add PR Push development workflow. PR [#170](https://github.com/tiangolo/sandbox/pull/170) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 🔥 Remove obsolete People workflow. PR [#161](https://github.com/tiangolo/sandbox/pull/161) by [@tiangolo](https://github.com/tiangolo).
