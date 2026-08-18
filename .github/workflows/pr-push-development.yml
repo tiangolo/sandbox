@@ -1,0 +1,37 @@
+name: Test PR Push Development
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  token:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Get PR Push development token
+        id: pr-push
+        uses: tiangolo/pr-push@693c1ef2fd8d1310349c8920c2888569879910fc # 0.0.3
+        with:
+          url: https://pr-push-dev.fastapicloud.dev
+      - name: Push test commit
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ steps.pr-push.outputs.token }}
+        run: |
+          gh auth setup-git
+          git config user.name "pr-push-dev[bot]"
+          git config user.email "pr-push-dev[bot]@users.noreply.github.com"
+          echo "${GITHUB_RUN_ID}" >> pr-push-dev.txt
+          git add pr-push-dev.txt
+          git commit -m "🧪 Test PR Push development"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
