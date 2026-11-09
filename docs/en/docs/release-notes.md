@@ -18,6 +18,7 @@
 
 ### Internal
 
+* ⬆️ Use latest-known uv and drop Python 3.8 and 3.9 from CI. PR [#173](https://github.com/tiangolo/sandbox/pull/173) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove obsolete People workflow. PR [#161](https://github.com/tiangolo/sandbox/pull/161) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use GitHub CLI for Git authentication. PR [#159](https://github.com/tiangolo/sandbox/pull/159) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Use PR Push commit identity. PR [#158](https://github.com/tiangolo/sandbox/pull/158) by [@tiangolo](https://github.com/tiangolo).
